@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const buzzwordsRoute = require('./routes/buzzwords.js');
 
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.json());
 
 app.use('/buzzwords', buzzwordsRoute);
 
