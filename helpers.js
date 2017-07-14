@@ -5,6 +5,7 @@ let allTheWords = [];
 const postFunc = (req, res) => {
   const myWord = allTheWords.map((curWord) => {
     return curWord.buzzWord;}).indexOf(req.body.buzzWord);
+
   if (myWord > -1 || allTheWords.length >= 5){
     res.send({"success" : false});
   } else {
@@ -22,9 +23,10 @@ const postFunc = (req, res) => {
 const putFunc = (req, res) => {
   const buzzObj = allTheWords[allTheWords.map((curWord) => {
     return curWord.buzzWord;}).indexOf(req.body.buzzWord)];
+  const myWord = allTheWords.map((curWord) => {
+    return curWord.buzzWord;}).indexOf(req.body.buzzWord);
 
-  if (allTheWords.map((curWord) => {
-    return curWord.buzzWord;}).indexOf(req.body.buzzWord) < -1){
+  if (myWord < -1){
     res.send({"success" : false});
   } else {
     buzzObj.heard = true;
@@ -34,22 +36,19 @@ const putFunc = (req, res) => {
 };
 
 const deleteFunc = (req, res) => {
-  if (allTheWords.map((curWord) => {
-    return curWord.buzzWord;}).indexOf(req.body.buzzWord) < -1){
+  const myWord = allTheWords.map((curWord) => {
+    return curWord.buzzWord;}).indexOf(req.body.buzzWord);
+  if (myWord < -1){
     res.send({"success" : false});
   } else {
-    allTheWords.splice(allTheWords.map((curWord) => {
-      return curWord.buzzWord;}).indexOf(req.body.buzzWord), 1);
+    allTheWords.splice(myWord, 1);
     res.send({"success" : true});
   }
 };
 
 const reset = (req, res) => {
-  console.log(req.body.buzzWord);
   if (req.body.buzzWord) {
-    console.log(allTheWords);
     allTheWords = [];
-    console.log(allTheWords);
     res.end(`{"success": true}`);
   }
 };
