@@ -6,7 +6,7 @@ const helpers = require('../helpers.js');
 
 router.route('/')
 .get((req, res) => {
-  res.send(helpers.allTheWords);
+  res.send(helpers.getAllTheWords());
 })
 .post((req, res) => {
   helpers.postFunc(req, res);
@@ -17,6 +17,5 @@ router.route('/')
 .delete((req, res) => {
   helpers.deleteFunc(req, res);
 });
-
 
 module.exports = router;
