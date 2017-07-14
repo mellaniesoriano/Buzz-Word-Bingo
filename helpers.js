@@ -2,7 +2,7 @@
 
 const allTheWords = [];
 
-const postBody = (req, res) => {
+const postFunc = (req, res) => {
   if (allTheWords.map((curWord) => {
     return curWord.buzzWord;}).indexOf(req.body.buzzWord) > -1 || allTheWords.length >= 5){
     res.send({"success" : false});
@@ -16,7 +16,7 @@ const postBody = (req, res) => {
   }
 };
 
-const putBody = (req, res) => {
+const putFunc = (req, res) => {
   const buzzObj = allTheWords[allTheWords.map((curWord) => {
     return curWord.buzzWord;}).indexOf(req.body.buzzWord)];
 
@@ -30,8 +30,20 @@ const putBody = (req, res) => {
   }
 };
 
+const deleteFunc = (req, res) => {
+  if (allTheWords.map((curWord) => {
+    return curWord.buzzWord;}).indexOf(req.body.buzzWord) < -1){
+    res.send({"success" : false});
+  } else {
+    allTheWords.splice(allTheWords.map((curWord) => {
+      return curWord.buzzWord;}).indexOf(req.body.buzzWord), 1);
+    res.send({"success" : true});
+  }
+};
+
 module.exports = {
   allTheWords,
-  postBody,
-  putBody
+  postFunc,
+  putFunc,
+  deleteFunc
 };
