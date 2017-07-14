@@ -1,10 +1,11 @@
 /* jshint esversion: 6 */
 
-const allTheWords = [];
+let allTheWords = [];
 
 const postFunc = (req, res) => {
-  if (allTheWords.map((curWord) => {
-    return curWord.buzzWord;}).indexOf(req.body.buzzWord) > -1 || allTheWords.length >= 5){
+  const myWord = allTheWords.map((curWord) => {
+    return curWord.buzzWord;}).indexOf(req.body.buzzWord);
+  if (myWord > -1 || allTheWords.length >= 5){
     res.send({"success" : false});
   } else {
     allTheWords.push({"buzzWord": req.body.buzzWord,
@@ -14,6 +15,8 @@ const postFunc = (req, res) => {
     res.send({"success" : true,
       "newScore" : 0});
   }
+  console.log(allTheWords.map((curWord) => {
+      return curWord.buzzWord;}).indexOf(req.body.buzzWord));
 };
 
 const putFunc = (req, res) => {
@@ -41,9 +44,24 @@ const deleteFunc = (req, res) => {
   }
 };
 
+const reset = (req, res) => {
+  console.log(req.body.buzzWord);
+  if (req.body.buzzWord) {
+    console.log(allTheWords);
+    allTheWords = [];
+    console.log(allTheWords);
+    res.end(`{"success": true}`);
+  }
+};
+
+const getAllTheWords = () => {
+  return allTheWords;
+};
+
 module.exports = {
-  allTheWords,
+  getAllTheWords,
   postFunc,
   putFunc,
-  deleteFunc
+  deleteFunc,
+  reset
 };
