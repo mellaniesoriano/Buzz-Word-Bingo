@@ -1,7 +1,6 @@
 /* jshint esversion: 6 */
 const express = require('express');
 const app = express();
-const router = express.Router();
 const bodyParser = require('body-parser');
 const buzzwordsRoute = require('./routes/buzzwords.js');
 const helpers = require('./helpers.js');
