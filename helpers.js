@@ -16,8 +16,6 @@ const postFunc = (req, res) => {
     res.send({"success" : true,
       "newScore" : 0});
   }
-  console.log(allTheWords.map((curWord) => {
-      return curWord.buzzWord;}).indexOf(req.body.buzzWord));
 };
 
 const putFunc = (req, res) => {
