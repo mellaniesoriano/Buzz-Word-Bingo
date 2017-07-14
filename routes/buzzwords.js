@@ -9,7 +9,13 @@ router.route('/')
   res.send(helpers.allTheWords);
 })
 .post((req, res) => {
-  helpers.postBody(req, res);
+  helpers.postFunc(req, res);
+})
+.put((req, res) => {
+  helpers.putFunc(req, res);
+})
+.delete((req, res) => {
+  helpers.deleteFunc(req, res);
 });
 
 
